@@ -2,6 +2,9 @@ import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import "../styles/globals.css";
 
+let title = "Hayalindeki Oda";
+let description = "Hayalindeki odayı saniyeler içinde oluştur.";
+
 export const metadata: Metadata = {
   title,
   description,
@@ -9,17 +12,14 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   openGraph: {
-    images: [ogimage],
     title,
     description,
     url: "https://roomgpt-demo.vercel.app",
-    siteName: sitename,
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    images: [ogimage],
     title,
     description,
   },
