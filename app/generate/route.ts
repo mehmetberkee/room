@@ -35,6 +35,26 @@ export async function POST(request: Request) {
   }
 
   const { imageUrl, theme, room } = await request.json();
+  let realRoom = room;
+  if (room === "Oyun odası") {
+    realRoom = "Gaming Room";
+  }
+
+  if (room === "Yemek odası") {
+    realRoom = "Dining Room";
+  }
+
+  if (room === "Oturma odası") {
+    realRoom = "Living Room";
+  }
+
+  if (room === "Yatak odası") {
+    realRoom = "Bedroom";
+  }
+
+  if (room === "Banyo") {
+    realRoom = "Bathroom";
+  }
 
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
@@ -49,9 +69,9 @@ export async function POST(request: Request) {
       input: {
         image: imageUrl,
         prompt:
-          room === "Gaming Room"
+          realRoom === "Gaming Room"
             ? "a room for gaming with gaming computers, gaming consoles, and gaming chairs"
-            : `a ${theme.toLowerCase()} ${room.toLowerCase()}`,
+            : `a ${theme.toLowerCase()} ${realRoom.toLowerCase()}`,
         a_prompt:
           "best quality, extremely detailed, photo from Pinterest, interior, cinematic photo, ultra-detailed, ultra-realistic, award-winning",
         n_prompt:
